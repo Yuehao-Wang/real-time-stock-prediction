@@ -1,9 +1,6 @@
 # presentation
 Final-Term Forecasting Time Series Stock Data On AWS.pptx
 
-# real-time-stock-prediction
-real-time stock prediction
-
 # Data
 
 ### save history daily stock data
