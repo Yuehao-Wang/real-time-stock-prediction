@@ -3,7 +3,7 @@ Final-Term Forecasting Time Series Stock Data On AWS.pptx
 
 # Data
 
-### Save history daily stock data
+- ### Save history daily stock data
 save_historical_transaction_data
 
 ### Save new daily stock data
