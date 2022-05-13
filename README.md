@@ -29,6 +29,7 @@ Final-Term Forecasting Time Series Stock Data On AWS.pptx
 
 # Mock Testing
 - https://github.com/Yuehao-Wang/real-time-stock-prediction/tree/main/mock_trading
+- Mock data sample: https://github.com/Yuehao-Wang/real-time-stock-prediction/blob/main/mock_trading/aapl.csv
 
 - We can create any strategies like strategy_ma20vsma80.py to evaluate models.
 
