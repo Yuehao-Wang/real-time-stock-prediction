@@ -1,16 +1,16 @@
-# presentation
+# Presentation
 Final-Term Forecasting Time Series Stock Data On AWS.pptx
 
 # Data
 
-### save history daily stock data
+### Save history daily stock data
 save_historical_transaction_data
 
-### save new daily stock data
+### Save new daily stock data
 stock-daily-data-to-s3
 stock-daily-data-froms3-to-rds
 
-### save real time stock data from a websocket to AWS Kinesis
+### Save real time stock data from a websocket to AWS Kinesis
 
 Websocket: 
 save_real_time_price_websocket
