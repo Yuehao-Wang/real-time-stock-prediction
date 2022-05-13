@@ -7,19 +7,18 @@ Final-Term Forecasting Time Series Stock Data On AWS.pptx
 - save_historical_transaction_data
 
 ### Save new daily stock data
-- AWS Lambda:
+- AWS RDS, S3 & Lambda: Recheck daily data after stock marketing closed
   - stock-daily-data-to-s3
   - stock-daily-data-froms3-to-rds
 
-### Save real time stock data from a websocket to AWS Kinesis
-
-- Websocket: 
-  - save_real_time_price_websocket
-
-- AWS Lambda:
+- AWS Kinesis & Lambda: Update daily data per 10 seconds
+  - daily-stock-price-kinesis-producer: call API per 10 seconds
   - daily-stock-price-kinesis-consumer
-  - daily-stock-price-kinesis-producer
 
+### Save real time stock data from a websocket to AWS TimeSteam Database
+
+- Websocket & TimeSteam Database: 
+  - save_real_time_price_websocket
 
 # LSTM & DeepAR
 - SageMaker:
