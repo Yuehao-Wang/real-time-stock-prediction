@@ -32,3 +32,7 @@ Final-Term Forecasting Time Series Stock Data On AWS.pptx
 
 - We can create any strategies like strategy_ma20vsma80.py to evaluate models.
 
+
+# Architecture Diagram
+![plot](./pic/architecture.png)
+
