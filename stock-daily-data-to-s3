@@ -1,0 +1,83 @@
+import yfinance as yf
+import pandas as pd
+import numpy as np
+import boto3
+from datetime import datetime, timedelta
+from io import StringIO
+
+def convertToVertical(stocks, stock_industry_map, daily_3y_df):
+    ticket_arr = []
+    for name in stocks:
+        temp_df = daily_3y_df[name].copy()
+        temp_df['ticket'] = name
+        temp_df['sector'] = stock_industry_map[name]
+        ticket_arr.append(temp_df)
+    vertical_df = pd.concat(ticket_arr)
+    return vertical_df
+
+def fetch_latest_daily_stocks():
+    stocks = ['SPOT', 'AMD', 'HIG', 'ALL', 'SHEL', 'XOM', 'UPS', 'HON', 'PFE', 'UNH']
+
+    stock_industry_map = {'SPOT':'Technology', 'AMD':'Technology', 
+                      'HIG':'Financial Services', 'ALL':'Financial Services', 
+                      'SHEL':'Energy', 'XOM':'Energy', 
+                      'UPS':'Industry', 'HON':'Industry', 
+                      'PFE':'Healthcare', 'UNH':'Healthcare'}
+    
+    list_tickers = yf.Tickers(stocks)
+
+    daily_3y_df = list_tickers.download(period='1d', group_by='ticker')
+    
+    vertical_df = convertToVertical(stocks, stock_industry_map, daily_3y_df)
+
+    vertical_df.reset_index(inplace = True)
+    
+    vertical_df.rename(columns={'Date':'trade_date', 'Open':'open', 'High':'high', 'Low':'low', 'Close':'close', 'Volume':'volume', 
+                            'Dividends':'dividends', 'Stock Splits':'stock_splits', 'ticket':'ticket'}, inplace = True)
+
+    vertical_df['trade_date'] = vertical_df['trade_date'].apply(lambda x: x.strftime('%Y-%m-%d')).astype(str)
+    
+    print(vertical_df.shape)
+    
+    return vertical_df
+
+
+def save_to_s3(df, current_date):
+    
+    current_date_start = current_date.strftime('%Y%m%d')
+    
+    # s3://g2-final/readme.txt
+    groupname= 'stock_daily' #name of your group
+    
+    filenames3 = "%s%s.csv"%(groupname, current_date_start) #name of the filepath and csv file
+    print(filenames3)
+    
+    bucketname = 'y-capstone-stock'
+    
+    csv_buffer = StringIO()
+    df.to_csv(csv_buffer)
+    
+    client = boto3.client('s3')
+    
+    response = client.put_object(
+        Body = csv_buffer.getvalue(),
+        Bucket = bucketname,
+        Key = filenames3
+    )
+    
+    print(response)
+    
+    #print success message
+    print("Successfull uploaded file to location:"+str(filenames3))
+    
+    
+# Defining lambda_handler function
+def lambda_handler(event, context):
+    
+    #current = datetime.today() - timedelta(days = 1)
+    current = datetime.today()
+    current_start = current.strftime('%Y-%m-%dT00:00:00')
+    
+    current_df = fetch_latest_daily_stocks()
+
+    save_to_s3(current_df, current)
