@@ -7,8 +7,9 @@ Final-Term Forecasting Time Series Stock Data On AWS.pptx
 - save_historical_transaction_data
 
 ### Save new daily stock data
-- stock-daily-data-to-s3
-- stock-daily-data-froms3-to-rds
+- AWS Lambda:
+  - stock-daily-data-to-s3
+  - stock-daily-data-froms3-to-rds
 
 ### Save real time stock data from a websocket to AWS Kinesis
 
@@ -21,17 +22,19 @@ Final-Term Forecasting Time Series Stock Data On AWS.pptx
 
 
 # LSTM & DeepAR
-- LSTM_final_1day_portfoliofinal.ipynb
-- LSTM_TimeStream_60s_portfolio_final.ipynb
+- SageMaker:
+  - LSTM_final_1day_portfoliofinal.ipynb
+  - LSTM_TimeStream_60s_portfolio_final.ipynb
 
-- DeepAR_1day_portpolio_final.ipynb
-- DeepAR_TimeStream_1min_portfolio_final.ipynb
+  - DeepAR_1day_portpolio_final.ipynb
+  - DeepAR_TimeStream_1min_portfolio_final.ipynb
 
 # Mock Testing
-- https://github.com/Yuehao-Wang/real-time-stock-prediction/tree/main/mock_trading
-- Mock data sample: https://github.com/Yuehao-Wang/real-time-stock-prediction/blob/main/mock_trading/aapl.csv
+- Python:
+  - https://github.com/Yuehao-Wang/real-time-stock-prediction/tree/main/mock_trading
+  - Mock data sample: https://github.com/Yuehao-Wang/real-time-stock-prediction/blob/main/mock_trading/aapl.csv
 
-- We can create any strategies like strategy_ma20vsma80.py to evaluate models.
+  - We can create any strategies like strategy_ma20vsma80.py to evaluate models.
 
 
 # Architecture Diagram
