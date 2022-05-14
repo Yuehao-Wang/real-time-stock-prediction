@@ -1,3 +1,9 @@
+# Introduction
+This project use AWS Services (S3, Lambda, RDS, Kinesis, TimeStream Database, SageMaker, etc.
+It can store stock prices data with intervals of 1-Day and real-time data.
+We can fetch various intervals of data from TimeStream Database by SQL.
+All ML models are trained on SageMaker. The Mock Trading can used different stragies to evaluate predictions predicted by ML modles.
+
 # Presentation
 Final-Term Forecasting Time Series Stock Data On AWS.pptx
 
